@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "FocusU",
+    "slug": "focusu",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "focusu",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F3EE"
+      }
+    },
+    "extra": {
+      "apiUrl": "http://localhost:4000"
+    }
+  }
+}
