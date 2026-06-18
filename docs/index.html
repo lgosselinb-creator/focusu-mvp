@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FocusU MVP Preview</title>
+    <title>FocusU MVP Interactivo</title>
     <style>
       :root {
         --paper: #f7f4ef;
@@ -38,18 +38,28 @@
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
       main {
         min-height: 100vh;
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
         place-items: center;
         padding: 24px;
       }
 
       .stage {
-        width: min(1040px, 100%);
+        width: min(1120px, 100%);
         display: grid;
-        grid-template-columns: 1fr 420px;
+        grid-template-columns: minmax(0, 1fr) 430px;
         gap: 34px;
         align-items: center;
       }
@@ -63,22 +73,22 @@
         padding: 8px 12px;
         border: 1px solid rgba(16, 47, 79, 0.12);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.66);
+        background: rgba(255, 255, 255, 0.72);
         color: var(--green);
-        font-weight: 900;
         font-size: 12px;
+        font-weight: 900;
       }
 
       .showcase h1 {
         margin: 18px 0 12px;
         color: var(--navy);
-        font-size: clamp(42px, 7vw, 76px);
+        font-size: clamp(42px, 7vw, 78px);
         line-height: 0.94;
         letter-spacing: 0;
       }
 
       .showcase p {
-        max-width: 560px;
+        max-width: 580px;
         margin: 0;
         color: var(--muted);
         font-size: 18px;
@@ -93,7 +103,7 @@
       }
 
       .feature {
-        min-height: 96px;
+        min-height: 104px;
         padding: 16px;
         border: 1px solid rgba(16, 47, 79, 0.1);
         border-radius: 8px;
@@ -122,8 +132,8 @@
       }
 
       .phone {
-        height: min(820px, calc(100vh - 70px));
-        min-height: 680px;
+        height: min(840px, calc(100vh - 70px));
+        min-height: 700px;
         background: var(--paper);
         border: 1px solid var(--line);
         border-radius: 28px;
@@ -214,7 +224,7 @@
       .hero {
         position: relative;
         overflow: hidden;
-        min-height: 176px;
+        min-height: 178px;
         background: linear-gradient(135deg, var(--navy), var(--navy-2));
         color: var(--paper);
       }
@@ -222,51 +232,68 @@
       .hero::after {
         content: "";
         position: absolute;
-        right: -28px;
-        bottom: -34px;
-        width: 160px;
-        height: 160px;
+        right: -30px;
+        bottom: -36px;
+        width: 164px;
+        height: 164px;
         border-radius: 50%;
         border: 28px solid rgba(216, 196, 168, 0.22);
       }
 
-      .hero h2 {
+      .hero h2,
+      .hero p,
+      .hero-row {
         position: relative;
         z-index: 1;
+      }
+
+      .hero h2 {
         margin: 0 0 8px;
-        max-width: 280px;
+        max-width: 290px;
         font-size: 24px;
         line-height: 1.1;
         letter-spacing: 0;
       }
 
       .hero p {
-        position: relative;
-        z-index: 1;
-        max-width: 260px;
+        max-width: 270px;
         margin: 0;
         color: var(--blue-soft);
         line-height: 1.45;
       }
 
       .hero-row {
-        position: relative;
-        z-index: 1;
         display: flex;
+        flex-wrap: wrap;
         gap: 8px;
         margin-top: 16px;
       }
 
-      .chip {
+      .chip,
+      .source-tag {
         display: inline-flex;
         align-items: center;
         gap: 6px;
         padding: 8px 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.13);
         color: var(--paper);
         font-size: 12px;
-        font-weight: 800;
+        font-weight: 900;
+      }
+
+      .source-tag {
+        width: fit-content;
+        margin-bottom: 10px;
+        background: rgba(29, 92, 74, 0.12);
+        color: var(--green);
+      }
+
+      .section-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
       }
 
       .section-title {
@@ -275,13 +302,9 @@
         color: var(--ink);
       }
 
-      .section-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
       .link {
+        border: 0;
+        background: transparent;
         color: var(--green);
         font-size: 13px;
         font-weight: 900;
@@ -290,7 +313,8 @@
       .stats,
       .quick-grid,
       .folder-row,
-      .moods {
+      .moods,
+      .field-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
@@ -331,12 +355,10 @@
       }
 
       .mini-bars i:nth-child(2) {
-        height: 70%;
         background: var(--tan);
       }
 
       .mini-bars i:nth-child(3) {
-        height: 100%;
         background: var(--green);
       }
 
@@ -350,6 +372,7 @@
         width: 64px;
         color: var(--navy);
         font-weight: 900;
+        line-height: 1.2;
       }
 
       .rail {
@@ -375,7 +398,6 @@
         min-height: 74px;
         font-weight: 900;
         color: var(--ink);
-        cursor: pointer;
         text-align: left;
         box-shadow: 0 8px 22px rgba(16, 47, 79, 0.06);
       }
@@ -393,9 +415,15 @@
       }
 
       .folder.active,
-      .mood.active {
+      .mood.active,
+      .course-pill.active {
         background: var(--navy);
         color: var(--paper);
+      }
+
+      .folder.active small,
+      .course-pill.active small {
+        color: var(--blue-soft);
       }
 
       .progress-track {
@@ -418,17 +446,6 @@
         color: var(--ink);
       }
 
-      .source-tag {
-        width: fit-content;
-        margin-bottom: 10px;
-        padding: 6px 9px;
-        border-radius: 999px;
-        background: rgba(29, 92, 74, 0.12);
-        color: var(--green);
-        font-size: 12px;
-        font-weight: 900;
-      }
-
       .summary-card {
         background: linear-gradient(135deg, var(--navy), var(--green));
         color: var(--paper);
@@ -441,10 +458,18 @@
       }
 
       .grade-row {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 58px 58px;
+        gap: 8px;
+        align-items: center;
         border-top: 1px solid var(--line);
         padding: 9px 0;
+      }
+
+      .grade-row input {
+        width: 100%;
+        min-height: 34px;
+        text-align: center;
       }
 
       .grade-progress {
@@ -477,7 +502,7 @@
         display: grid;
         place-items: center;
         background:
-          conic-gradient(var(--tan) 0 74%, rgba(255, 255, 255, 0.22) 74% 100%);
+          conic-gradient(var(--tan) 0 var(--timer-progress, 100%), rgba(255, 255, 255, 0.22) var(--timer-progress, 100%) 100%);
       }
 
       .clock-inner {
@@ -495,14 +520,26 @@
         font-weight: 900;
       }
 
-      .button {
+      .button,
+      .secondary-button {
         border: 0;
         border-radius: 8px;
-        padding: 14px 22px;
+        padding: 12px 14px;
         background: var(--navy);
         color: var(--paper);
         font-weight: 900;
-        cursor: pointer;
+      }
+
+      .secondary-button {
+        background: var(--paper);
+        color: var(--navy);
+        border: 1px solid var(--line);
+      }
+
+      .button-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
       }
 
       .wellness-hero {
@@ -526,6 +563,54 @@
         font-weight: 900;
       }
 
+      label {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        margin-bottom: 6px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--ink);
+        padding: 10px;
+        outline: none;
+      }
+
+      textarea {
+        min-height: 112px;
+        resize: vertical;
+      }
+
+      .form-field {
+        margin-bottom: 10px;
+      }
+
+      .toast {
+        display: none;
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 74px;
+        padding: 12px;
+        border-radius: 8px;
+        background: var(--navy);
+        color: var(--paper);
+        box-shadow: 0 14px 36px rgba(16, 47, 79, 0.22);
+        font-weight: 800;
+        z-index: 4;
+      }
+
+      .toast.show {
+        display: block;
+      }
+
       nav {
         display: grid;
         grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -544,7 +629,6 @@
         color: var(--muted);
         font-size: 10px;
         font-weight: 900;
-        cursor: pointer;
       }
 
       nav button span {
@@ -573,7 +657,7 @@
 
         .phone {
           height: calc(100vh - 48px);
-          min-height: 680px;
+          min-height: 700px;
         }
       }
     </style>
@@ -582,17 +666,17 @@
     <main>
       <div class="stage">
         <aside class="showcase">
-          <div class="eyebrow">MVP funcional · preview en GitHub Pages</div>
+          <div class="eyebrow">MVP interactivo · GitHub Pages</div>
           <h1>FocusU</h1>
           <p>
-            Una app academica para planificar clases, estudiar con IA, calcular notas,
-            entrar en modo focus y cuidar el bienestar sin configurar mil cosas.
+            Esta preview funciona sin instalar nada: puedes crear cursos, analizar un silabo,
+            agregar eventos, editar notas, iniciar un timer y recibir recomendaciones de bienestar.
           </p>
           <div class="feature-grid">
-            <div class="feature"><b>IA con documentos</b><span>Resumen de silabos, flashcards, planes y respuestas con fuente.</span></div>
-            <div class="feature"><b>Control academico</b><span>Cursos, creditos, evaluaciones, promedio y proyeccion final.</span></div>
-            <div class="feature"><b>Calendario vivo</b><span>Clases recurrentes, bloques de estudio y sesiones asociadas a curso.</span></div>
-            <div class="feature"><b>Focus + bienestar</b><span>Timer, bloqueo simulado, respiracion y recomendaciones personalizadas.</span></div>
+            <div class="feature"><b>IA simulada con documentos</b><span>Pega un silabo y FocusU detecta temas, evaluaciones y plan inicial.</span></div>
+            <div class="feature"><b>Calculadora viva</b><span>Edita pesos y notas; el promedio y la nota final necesaria se actualizan.</span></div>
+            <div class="feature"><b>Agenda editable</b><span>Crea bloques de clase o estudio asociados a cada curso.</span></div>
+            <div class="feature"><b>Focus real</b><span>Temporizador funcional con historial de sesiones en memoria.</span></div>
           </div>
         </aside>
 
@@ -610,31 +694,30 @@
             <div class="content">
               <section class="screen active" id="inicio">
                 <div class="card hero">
-                  <h2>Tu plan de hoy ya esta armado</h2>
-                  <p>3 bloques academicos, una prioridad clara y una pausa antes del tramo mas pesado.</p>
+                  <h2 id="daily-title">Tu plan de hoy ya esta armado</h2>
+                  <p id="daily-copy">FocusU ajusta tu dia con cursos, notas, agenda, focus y bienestar.</p>
                   <div class="hero-row">
-                    <span class="chip">IA primero</span>
-                    <span class="chip">2h focus</span>
+                    <span class="chip" id="hero-priority">Prioridad: IA</span>
+                    <span class="chip" id="hero-focus">0 min focus hoy</span>
                   </div>
                 </div>
                 <div class="stats">
-                  <div class="card metric"><strong>15.6</strong><span>Promedio</span><div class="mini-bars"><i style="height:52%"></i><i></i><i></i></div></div>
-                  <div class="card metric"><strong>10</strong><span>Creditos</span><div class="mini-bars"><i style="height:36%"></i><i></i><i style="height:82%"></i></div></div>
-                  <div class="card metric"><strong>2h</strong><span>Focus</span><div class="mini-bars"><i style="height:44%"></i><i></i><i style="height:90%"></i></div></div>
+                  <div class="card metric"><strong id="dash-average">0.0</strong><span>Promedio</span><div class="mini-bars"><i style="height:52%"></i><i style="height:70%"></i><i style="height:100%"></i></div></div>
+                  <div class="card metric"><strong id="dash-credits">0</strong><span>Creditos</span><div class="mini-bars"><i style="height:36%"></i><i style="height:70%"></i><i style="height:82%"></i></div></div>
+                  <div class="card metric"><strong id="dash-events">0</strong><span>Eventos</span><div class="mini-bars"><i style="height:44%"></i><i style="height:70%"></i><i style="height:90%"></i></div></div>
                 </div>
                 <div class="section-row">
                   <h2 class="section-title">Calendario del dia</h2>
-                  <span class="link">Semana</span>
+                  <button class="link" data-target="agenda">Agregar</button>
                 </div>
-                <div class="card event"><div class="time">09:00</div><div class="rail"><strong>Clase IA</strong><span class="muted">Clase semanal · aula B204</span></div></div>
-                <div class="card event"><div class="time">15:00</div><div class="rail"><strong>Estudio Estadistica</strong><span class="muted">Bloque recomendado por IA</span></div></div>
+                <div id="today-events"></div>
                 <div class="section-row">
                   <h2 class="section-title">Accesos rapidos</h2>
-                  <span class="link">Editar</span>
+                  <button class="link" data-target="perfil">Cursos</button>
                 </div>
                 <div class="quick-grid">
                   <button class="quick" data-go="estudio">Asistente IA<small>Preguntar y resumir</small></button>
-                  <button class="quick" data-go="focus">Focus Timer<small>Bloqueo simulado</small></button>
+                  <button class="quick" data-go="focus">Focus Timer<small>Sesion cronometrada</small></button>
                   <button class="quick" data-go="notas">Notas<small>Promedios y final</small></button>
                   <button class="quick" data-go="bienestar">Bienestar<small>Pausas y estres</small></button>
                 </div>
@@ -642,95 +725,118 @@
 
               <section class="screen" id="perfil">
                 <div class="card" style="background: var(--green); color: var(--paper)">
-                  <h2>Lissette Gosselin</h2>
+                  <h2 style="margin-top:0">Lissette Gosselin</h2>
                   <p>Ingenieria de Software · Ciclo 6</p>
                   <div class="progress-track"><div class="progress-fill"></div></div>
                   <p>126 de 220 creditos aprobados · 57%</p>
                 </div>
-                <h2 class="section-title">Cursos activos</h2>
-                <div class="card course"><strong>Inteligencia Artificial</strong><span class="muted">CS-302 · 4 creditos · Dra. Ramos</span><p>Busqueda, ML, redes neuronales y proyecto aplicado.</p></div>
-                <div class="card course" style="border-left-color: var(--green)"><strong>Estadistica Aplicada</strong><span class="muted">MA-221 · 3 creditos · Mg. Salazar</span><p>Inferencia, regresion, pruebas de hipotesis y visualizacion.</p></div>
-                <div class="card course" style="border-left-color: var(--brown)"><strong>Interaccion Humano Computador</strong><span class="muted">UX-210 · 3 creditos · Arq. Vega</span><p>Investigacion, prototipado, heuristicas y evaluacion UX.</p></div>
+                <div class="section-row">
+                  <h2 class="section-title">Cursos activos</h2>
+                  <span class="link" id="course-count">0/7</span>
+                </div>
+                <div id="course-list"></div>
+                <div class="card">
+                  <h3 style="margin-top:0">Crear curso</h3>
+                  <div class="form-field"><label>Nombre</label><input id="new-course-name" value="Arquitectura Cloud" /></div>
+                  <div class="field-grid">
+                    <div class="form-field"><label>Codigo</label><input id="new-course-code" value="CS-410" /></div>
+                    <div class="form-field"><label>Creditos</label><input id="new-course-credits" type="number" min="1" max="8" value="3" /></div>
+                  </div>
+                  <button class="button" id="add-course">Agregar curso</button>
+                </div>
               </section>
 
               <section class="screen" id="estudio">
                 <h2 class="section-title">Carpetas de curso</h2>
-                <div class="folder-row">
-                  <div class="folder active">IA<small>3 docs</small></div>
-                  <div class="folder">EST<small>2 docs</small></div>
-                  <div class="folder">HCI<small>4 docs</small></div>
-                  <div class="folder">+<small>Nuevo</small></div>
-                </div>
+                <div class="folder-row" id="study-folders"></div>
                 <div class="card">
-                  <div class="source-tag">Fuente: silabo_ia.pdf</div>
-                  <h2>Analisis IA del silabo</h2>
-                  <p class="muted">Subir silabo PDF/Word queda listo en el MVP movil.</p>
+                  <div class="source-tag" id="selected-source">Fuente: silabo_ia.pdf</div>
+                  <h2 style="margin-top:0">Analizar silabo</h2>
+                  <div class="form-field">
+                    <label>Texto del silabo</label>
+                    <textarea id="syllabus-input">Curso de Inteligencia Artificial. Unidades: busqueda informada, aprendizaje supervisado, redes neuronales. Evaluacion: practica 20%, parcial 30%, proyecto 20%, final 30%.</textarea>
+                  </div>
+                  <button class="button" id="analyze-syllabus">Analizar con IA</button>
                 </div>
-                <div class="card analysis">
+                <div class="card analysis" id="analysis-result">
                   <strong>Resumen</strong>
-                  <p>La IA detecta unidades, evaluaciones y genera un plan inicial basado en los documentos subidos.</p>
-                  <strong>Plan inicial</strong>
-                  <p>3 bloques de 45 min por semana, flashcards por unidad y repaso 5 dias antes del final.</p>
+                  <p>Analiza un silabo para generar resumen, temas, evaluaciones y plan inicial.</p>
                 </div>
               </section>
 
               <section class="screen" id="agenda">
                 <div class="section-row">
                   <h2 class="section-title">Semana academica</h2>
-                  <span class="link">+ Bloque</span>
+                  <span class="link">Editable</span>
                 </div>
-                <div class="card event"><div class="time">Jue<br />09:00</div><div class="rail"><strong>Clase IA</strong><span class="muted">Repeticion semanal</span></div></div>
-                <div class="card event"><div class="time">Jue<br />15:00</div><div class="rail"><strong>Bloque Estadistica</strong><span class="muted">Editable y asociado a curso</span></div></div>
-                <div class="card event"><div class="time">Jue<br />18:00</div><div class="rail"><strong>Revision prototipo</strong><span class="muted">HCI · trabajo grupal</span></div></div>
+                <div id="calendar-list"></div>
+                <div class="card">
+                  <h3 style="margin-top:0">Nuevo evento</h3>
+                  <div class="form-field"><label>Titulo</label><input id="event-title" value="Bloque de repaso" /></div>
+                  <div class="field-grid">
+                    <div class="form-field"><label>Hora</label><input id="event-time" value="17:00" /></div>
+                    <div class="form-field"><label>Tipo</label><select id="event-type"><option value="study">Estudio</option><option value="class">Clase</option><option value="exam">Examen</option></select></div>
+                  </div>
+                  <div class="form-field"><label>Curso</label><select id="event-course"></select></div>
+                  <button class="button" id="add-event">Agregar evento</button>
+                </div>
               </section>
 
               <section class="screen" id="notas">
                 <div class="card summary-card">
                   <span>Promedio ponderado general</span>
-                  <div class="big">15.56</div>
+                  <div class="big" id="weighted-average">0.00</div>
                   <span>Promedio x creditos / total creditos</span>
                 </div>
-                <h2 class="section-title">Inteligencia Artificial</h2>
-                <div class="card">
-                  <div class="grade-row"><strong>Practica 1</strong><span>20% · 15</span></div>
-                  <div class="grade-row"><strong>Parcial</strong><span>30% · 14</span></div>
-                  <div class="grade-row"><strong>Proyecto</strong><span>20% · 17</span></div>
-                  <div class="grade-row"><strong>Final</strong><span>30% · pendiente</span></div>
-                  <div class="grade-progress"><span></span></div>
-                  <p style="color: var(--brown); font-weight: 900">Necesitas 1.3 en final para aprobar con 11.</p>
+                <div class="section-row">
+                  <h2 class="section-title">Curso</h2>
+                  <select id="grade-course" style="width: 170px"></select>
                 </div>
+                <div class="card" id="grades-panel"></div>
               </section>
 
               <section class="screen" id="focus">
-                <div class="card timer">
-                  <strong>Inteligencia Artificial</strong>
-                  <div class="clock-ring"><div class="clock-inner"><div class="clock">25:00</div></div></div>
-                  <p>Bloqueo de redes: simulacion activa para MVP</p>
-                  <button class="button">Iniciar sesion</button>
+                <div class="card timer" id="timer-card">
+                  <strong id="focus-course-label">Inteligencia Artificial</strong>
+                  <div class="clock-ring" id="clock-ring"><div class="clock-inner"><div class="clock" id="clock">25:00</div></div></div>
+                  <p id="blocking-status">Bloqueo de redes: listo para simular</p>
+                  <div class="button-row" style="justify-content:center">
+                    <button class="button" id="timer-toggle">Iniciar</button>
+                    <button class="secondary-button" id="timer-reset">Reiniciar</button>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="form-field"><label>Curso</label><select id="focus-course"></select></div>
+                  <div class="field-grid">
+                    <button class="secondary-button" data-minutes="15">15 min</button>
+                    <button class="secondary-button" data-minutes="25">25 min</button>
+                  </div>
                 </div>
                 <h2 class="section-title">Historial</h2>
-                <div class="card"><p>Hoy · 45 min reales · Estadistica Aplicada</p><p>Ayer · 90 min reales · Inteligencia Artificial</p></div>
+                <div id="focus-history" class="card"></div>
               </section>
 
               <section class="screen" id="bienestar">
                 <div class="card wellness-hero">
-                  <h2>Carga academica actual</h2>
-                  <p>3 cursos activos. Recomendacion: una pausa breve antes del siguiente bloque exigente.</p>
+                  <h2 style="margin-top:0">Carga academica actual</h2>
+                  <p id="wellness-load">FocusU combina eventos, focus y estres para sugerir una pausa realista.</p>
                 </div>
                 <h2 class="section-title">Estado emocional</h2>
-                <div class="moods">
-                  <div class="mood">calma</div>
-                  <div class="mood active">neutral</div>
-                  <div class="mood">estres</div>
-                  <div class="mood">cansancio</div>
+                <div class="moods" id="mood-list">
+                  <button class="mood" data-mood="calma">calma</button>
+                  <button class="mood active" data-mood="neutral">neutral</button>
+                  <button class="mood" data-mood="estres">estres</button>
+                  <button class="mood" data-mood="cansancio">cansancio</button>
                 </div>
                 <div class="card">
-                  <h2>Respiracion 4-7-8</h2>
+                  <h2 style="margin-top:0">Respiracion 4-7-8</h2>
                   <div class="breath"><div>Inhala 4</div><div>Sosten 7</div><div>Exhala 8</div></div>
                 </div>
+                <div class="card analysis" id="wellness-reco"></div>
               </section>
             </div>
 
+            <div class="toast" id="toast"></div>
             <nav aria-label="Navegacion">
               <button class="active" data-target="inicio"><span>⌂</span>Inicio</button>
               <button data-target="perfil"><span>▣</span>Perfil</button>
@@ -746,21 +852,343 @@
     </main>
 
     <script>
-      const screens = document.querySelectorAll(".screen");
-      const navButtons = document.querySelectorAll("nav button");
+      const state = {
+        selectedCourseId: "course_ai",
+        gradeCourseId: "course_ai",
+        focusCourseId: "course_ai",
+        mood: "neutral",
+        timerSeconds: 25 * 60,
+        timerInitialSeconds: 25 * 60,
+        timerRunning: false,
+        timerHandle: null,
+        focusHistory: [
+          { courseId: "course_stats", minutes: 45 },
+          { courseId: "course_ai", minutes: 90 }
+        ],
+        courses: [
+          { id: "course_ai", name: "Inteligencia Artificial", code: "CS-302", credits: 4, professor: "Dra. Ramos", color: "#102f4f", summary: "Busqueda, ML, redes neuronales y proyecto aplicado." },
+          { id: "course_stats", name: "Estadistica Aplicada", code: "MA-221", credits: 3, professor: "Mg. Salazar", color: "#1d5c4a", summary: "Inferencia, regresion, pruebas de hipotesis y visualizacion." },
+          { id: "course_hci", name: "Interaccion Humano Computador", code: "UX-210", credits: 3, professor: "Arq. Vega", color: "#8a6a4f", summary: "Investigacion, prototipado, heuristicas y evaluacion UX." }
+        ],
+        events: [
+          { id: "ev1", courseId: "course_ai", title: "Clase IA", type: "class", time: "09:00" },
+          { id: "ev2", courseId: "course_stats", title: "Estudio Estadistica", type: "study", time: "15:00" },
+          { id: "ev3", courseId: "course_hci", title: "Revision prototipo", type: "study", time: "18:00" }
+        ],
+        grades: [
+          { id: "g1", courseId: "course_ai", name: "Practica 1", weight: 20, score: 15 },
+          { id: "g2", courseId: "course_ai", name: "Parcial", weight: 30, score: 14 },
+          { id: "g3", courseId: "course_ai", name: "Proyecto", weight: 20, score: 17 },
+          { id: "g4", courseId: "course_ai", name: "Final", weight: 30, score: "", final: true },
+          { id: "g5", courseId: "course_stats", name: "Labs", weight: 40, score: 16 },
+          { id: "g6", courseId: "course_stats", name: "Parcial", weight: 25, score: 13 },
+          { id: "g7", courseId: "course_stats", name: "Final", weight: 35, score: "", final: true },
+          { id: "g8", courseId: "course_hci", name: "Investigacion", weight: 25, score: 18 },
+          { id: "g9", courseId: "course_hci", name: "Prototipo", weight: 35, score: 16 },
+          { id: "g10", courseId: "course_hci", name: "Entrega final", weight: 40, score: "", final: true }
+        ]
+      };
 
-      function showScreen(id) {
-        screens.forEach((screen) => screen.classList.toggle("active", screen.id === id));
-        navButtons.forEach((button) => button.classList.toggle("active", button.dataset.target === id));
+      const $ = (selector) => document.querySelector(selector);
+      const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+      function courseById(id) {
+        return state.courses.find((course) => course.id === id) || state.courses[0];
       }
 
-      document.querySelectorAll("[data-target]").forEach((button) => {
-        button.addEventListener("click", () => showScreen(button.dataset.target));
+      function showToast(message) {
+        const toast = $("#toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1800);
+      }
+
+      function showScreen(id) {
+        $$(".screen").forEach((screen) => screen.classList.toggle("active", screen.id === id));
+        $$("nav button").forEach((button) => button.classList.toggle("active", button.dataset.target === id));
+      }
+
+      function parseNumber(value) {
+        const number = Number(value);
+        return Number.isFinite(number) ? number : 0;
+      }
+
+      function courseAverage(courseId) {
+        const items = state.grades.filter((item) => item.courseId === courseId && item.score !== "");
+        const weight = items.reduce((sum, item) => sum + parseNumber(item.weight), 0);
+        if (!weight) return 0;
+        return items.reduce((sum, item) => sum + parseNumber(item.score) * parseNumber(item.weight), 0) / weight;
+      }
+
+      function weightedAverage() {
+        const credits = state.courses.reduce((sum, course) => sum + parseNumber(course.credits), 0);
+        if (!credits) return 0;
+        return state.courses.reduce((sum, course) => sum + courseAverage(course.id) * parseNumber(course.credits), 0) / credits;
+      }
+
+      function neededFinal(courseId, target = 11) {
+        const items = state.grades.filter((item) => item.courseId === courseId);
+        const final = items.find((item) => item.final);
+        if (!final || !parseNumber(final.weight)) return null;
+        const accumulated = items
+          .filter((item) => !item.final && item.score !== "")
+          .reduce((sum, item) => sum + parseNumber(item.score) * (parseNumber(item.weight) / 100), 0);
+        return Math.max(0, Math.min(20, (target - accumulated) / (parseNumber(final.weight) / 100)));
+      }
+
+      function renderDashboard() {
+        const totalCredits = state.courses.reduce((sum, course) => sum + parseNumber(course.credits), 0);
+        const focusToday = state.focusHistory.reduce((sum, session) => sum + session.minutes, 0);
+        $("#dash-average").textContent = weightedAverage().toFixed(1);
+        $("#dash-credits").textContent = totalCredits;
+        $("#dash-events").textContent = state.events.length;
+        $("#hero-focus").textContent = `${focusToday} min focus`;
+        $("#hero-priority").textContent = `Prioridad: ${courseById(state.selectedCourseId).code}`;
+        $("#today-events").innerHTML = state.events
+          .slice()
+          .sort((a, b) => a.time.localeCompare(b.time))
+          .map((event) => {
+            const course = courseById(event.courseId);
+            return `<div class="card event"><div class="time">${event.time}</div><div class="rail" style="border-left-color:${course.color}"><strong>${event.title}</strong><span class="muted">${course.name} · ${event.type === "class" ? "Clase" : event.type === "exam" ? "Examen" : "Estudio"}</span></div></div>`;
+          })
+          .join("");
+      }
+
+      function renderCourses() {
+        $("#course-count").textContent = `${state.courses.length}/7`;
+        $("#course-list").innerHTML = state.courses
+          .map((course) => `<div class="card course" style="border-left-color:${course.color}"><strong>${course.name}</strong><span class="muted">${course.code} · ${course.credits} creditos · ${course.professor}</span><p>${course.summary}</p></div>`)
+          .join("");
+      }
+
+      function renderCourseSelects() {
+        const options = state.courses.map((course) => `<option value="${course.id}">${course.code} · ${course.name}</option>`).join("");
+        ["#event-course", "#grade-course", "#focus-course"].forEach((selector) => {
+          const element = $(selector);
+          element.innerHTML = options;
+        });
+        $("#grade-course").value = state.gradeCourseId;
+        $("#focus-course").value = state.focusCourseId;
+      }
+
+      function renderStudy() {
+        $("#study-folders").innerHTML = state.courses
+          .map((course) => `<button class="folder ${course.id === state.selectedCourseId ? "active" : ""}" data-course-folder="${course.id}">${course.code}<small>${state.grades.filter((grade) => grade.courseId === course.id).length} items</small></button>`)
+          .join("");
+        $("#selected-source").textContent = `Fuente: ${courseById(state.selectedCourseId).code.toLowerCase()}_silabo.pdf`;
+        $$("[data-course-folder]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.selectedCourseId = button.dataset.courseFolder;
+            renderAll();
+          });
+        });
+      }
+
+      function analyzeSyllabus() {
+        const text = $("#syllabus-input").value.trim();
+        const parts = text.split(/[.;\n]/).map((item) => item.trim()).filter(Boolean);
+        const topics = parts.filter((line) => /unidad|tema|semana|busqueda|aprendizaje|redes|proyecto/i.test(line)).slice(0, 4);
+        const evaluations = parts.filter((line) => /evaluacion|parcial|final|practica|proyecto|examen/i.test(line)).slice(0, 4);
+        $("#analysis-result").innerHTML = `
+          <strong>Resumen</strong>
+          <p>${text.slice(0, 220) || "No hay texto suficiente para analizar."}</p>
+          <strong>Temas detectados</strong>
+          <p>${(topics.length ? topics : ["Objetivos del curso", "Unidades principales", "Proyecto aplicado"]).join(" · ")}</p>
+          <strong>Evaluaciones</strong>
+          <p>${(evaluations.length ? evaluations : ["No se detectaron evaluaciones explicitas"]).join(" · ")}</p>
+          <strong>Plan inicial</strong>
+          <p>Agenda 3 bloques de 45 minutos, crea flashcards por unidad y reserva repaso 5 dias antes de cada evaluacion.</p>
+        `;
+        showToast("Silabo analizado con IA simulada");
+      }
+
+      function renderCalendar() {
+        $("#calendar-list").innerHTML = state.events
+          .slice()
+          .sort((a, b) => a.time.localeCompare(b.time))
+          .map((event) => {
+            const course = courseById(event.courseId);
+            return `<div class="card event"><div class="time">Jue<br>${event.time}</div><div class="rail" style="border-left-color:${course.color}"><strong>${event.title}</strong><span class="muted">${course.name} · ${event.type}</span></div></div>`;
+          })
+          .join("");
+      }
+
+      function renderGrades() {
+        $("#weighted-average").textContent = weightedAverage().toFixed(2);
+        const course = courseById(state.gradeCourseId);
+        const items = state.grades.filter((item) => item.courseId === state.gradeCourseId);
+        const needed = neededFinal(state.gradeCourseId, 11);
+        $("#grades-panel").innerHTML = `
+          <h3 style="margin-top:0">${course.name}</h3>
+          <p class="muted">Edita pesos y notas. El calculo se actualiza automaticamente.</p>
+          ${items
+            .map(
+              (item) => `<div class="grade-row">
+                <strong>${item.name}</strong>
+                <input data-grade-weight="${item.id}" type="number" min="0" max="100" value="${item.weight}" aria-label="Peso ${item.name}" />
+                <input data-grade-score="${item.id}" type="number" min="0" max="20" step="0.1" value="${item.score}" placeholder="-" aria-label="Nota ${item.name}" />
+              </div>`
+            )
+            .join("")}
+          <div class="grade-progress"><span style="width:${Math.min(100, courseAverage(course.id) * 5)}%"></span></div>
+          <p style="color: var(--brown); font-weight: 900">Promedio actual: ${courseAverage(course.id).toFixed(2)} · necesitas ${needed === null ? "-" : needed.toFixed(1)} en final para aprobar con 11.</p>
+        `;
+        $$("[data-grade-weight]").forEach((input) => {
+          input.addEventListener("input", () => {
+            const item = state.grades.find((grade) => grade.id === input.dataset.gradeWeight);
+            item.weight = parseNumber(input.value);
+            renderGrades();
+            renderDashboard();
+          });
+        });
+        $$("[data-grade-score]").forEach((input) => {
+          input.addEventListener("input", () => {
+            const item = state.grades.find((grade) => grade.id === input.dataset.gradeScore);
+            item.score = input.value === "" ? "" : parseNumber(input.value);
+            renderGrades();
+            renderDashboard();
+          });
+        });
+      }
+
+      function formatClock(seconds) {
+        const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+        const secs = String(seconds % 60).padStart(2, "0");
+        return `${mins}:${secs}`;
+      }
+
+      function renderTimer() {
+        const course = courseById(state.focusCourseId);
+        $("#focus-course-label").textContent = course.name;
+        $("#clock").textContent = formatClock(state.timerSeconds);
+        $("#timer-toggle").textContent = state.timerRunning ? "Pausar" : "Iniciar";
+        $("#blocking-status").textContent = state.timerRunning ? "Bloqueo de redes: simulacion activa" : "Bloqueo de redes: listo para simular";
+        const progress = (state.timerSeconds / state.timerInitialSeconds) * 100;
+        $("#clock-ring").style.setProperty("--timer-progress", `${progress}%`);
+        $("#focus-history").innerHTML = state.focusHistory.length
+          ? state.focusHistory.map((session) => `<p>${session.minutes} min reales · ${courseById(session.courseId).name}</p>`).join("")
+          : "<p class='muted'>Aun no hay sesiones registradas.</p>";
+      }
+
+      function tickTimer() {
+        if (state.timerSeconds <= 0) {
+          const minutes = Math.round(state.timerInitialSeconds / 60);
+          state.focusHistory.unshift({ courseId: state.focusCourseId, minutes });
+          state.timerRunning = false;
+          clearInterval(state.timerHandle);
+          state.timerSeconds = state.timerInitialSeconds;
+          showToast("Sesion focus registrada");
+          renderAll();
+          return;
+        }
+        state.timerSeconds -= 1;
+        renderTimer();
+      }
+
+      function renderWellness() {
+        $$("#mood-list .mood").forEach((button) => button.classList.toggle("active", button.dataset.mood === state.mood));
+        const focusToday = state.focusHistory.reduce((sum, session) => sum + session.minutes, 0);
+        $("#wellness-load").textContent = `${state.courses.length} cursos activos, ${state.events.length} eventos y ${focusToday} minutos focus registrados.`;
+        const advice = {
+          calma: "Buen momento para una tarea profunda de 45 minutos. Mantener ritmo es mejor que sobrecargarte.",
+          neutral: "Haz un bloque corto y deja una pausa activa de 8 minutos antes de la siguiente tarea.",
+          estres: "Reduce el siguiente bloque a 25 minutos, respira 4-7-8 y elige una sola tarea critica.",
+          cansancio: "Cambia produccion por repaso ligero. Usa flashcards y cierra con una tarea pequena."
+        };
+        $("#wellness-reco").innerHTML = `<strong>Recomendacion IA</strong><p>${advice[state.mood]}</p>`;
+      }
+
+      function renderAll() {
+        renderDashboard();
+        renderCourses();
+        renderCourseSelects();
+        renderStudy();
+        renderCalendar();
+        renderGrades();
+        renderTimer();
+        renderWellness();
+      }
+
+      $$("[data-target]").forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.target)));
+      $$("[data-go]").forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.go)));
+
+      $("#add-course").addEventListener("click", () => {
+        if (state.courses.length >= 7) {
+          showToast("MVP limitado a 7 cursos activos");
+          return;
+        }
+        const name = $("#new-course-name").value.trim() || "Nuevo curso";
+        const code = $("#new-course-code").value.trim() || `C-${Date.now().toString().slice(-3)}`;
+        const credits = parseNumber($("#new-course-credits").value) || 3;
+        const id = `course_${Date.now()}`;
+        state.courses.push({ id, name, code, credits, professor: "Por definir", color: "#c9974a", summary: "Curso creado desde la preview interactiva." });
+        state.grades.push({ id: `g_${Date.now()}_1`, courseId: id, name: "Parcial", weight: 40, score: "" });
+        state.grades.push({ id: `g_${Date.now()}_2`, courseId: id, name: "Final", weight: 60, score: "", final: true });
+        showToast("Curso agregado");
+        renderAll();
       });
 
-      document.querySelectorAll("[data-go]").forEach((button) => {
-        button.addEventListener("click", () => showScreen(button.dataset.go));
+      $("#analyze-syllabus").addEventListener("click", analyzeSyllabus);
+
+      $("#add-event").addEventListener("click", () => {
+        state.events.push({
+          id: `ev_${Date.now()}`,
+          title: $("#event-title").value.trim() || "Nuevo evento",
+          time: $("#event-time").value.trim() || "17:00",
+          type: $("#event-type").value,
+          courseId: $("#event-course").value
+        });
+        showToast("Evento agregado al calendario");
+        renderAll();
       });
+
+      $("#grade-course").addEventListener("change", (event) => {
+        state.gradeCourseId = event.target.value;
+        renderGrades();
+      });
+
+      $("#focus-course").addEventListener("change", (event) => {
+        state.focusCourseId = event.target.value;
+        renderTimer();
+      });
+
+      $("[data-minutes='15']").addEventListener("click", () => {
+        state.timerInitialSeconds = 15 * 60;
+        state.timerSeconds = state.timerInitialSeconds;
+        renderTimer();
+      });
+
+      $("[data-minutes='25']").addEventListener("click", () => {
+        state.timerInitialSeconds = 25 * 60;
+        state.timerSeconds = state.timerInitialSeconds;
+        renderTimer();
+      });
+
+      $("#timer-toggle").addEventListener("click", () => {
+        state.timerRunning = !state.timerRunning;
+        if (state.timerRunning) {
+          state.timerHandle = setInterval(tickTimer, 1000);
+        } else {
+          clearInterval(state.timerHandle);
+        }
+        renderTimer();
+      });
+
+      $("#timer-reset").addEventListener("click", () => {
+        state.timerRunning = false;
+        clearInterval(state.timerHandle);
+        state.timerSeconds = state.timerInitialSeconds;
+        renderTimer();
+      });
+
+      $$("#mood-list .mood").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.mood = button.dataset.mood;
+          renderWellness();
+        });
+      });
+
+      renderAll();
     </script>
   </body>
 </html>
